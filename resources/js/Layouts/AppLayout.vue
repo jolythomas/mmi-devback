@@ -244,6 +244,12 @@ const logout = () => {
                         >
                             Catégories
                         </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            :href="route('products')"
+                            :active="route().current('products')"
+                        >
+                            Produits
+                        </ResponsiveNavLink>
                     </div>
 
                     <!-- Non connecté (Mobile) -->
