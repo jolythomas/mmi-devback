@@ -5,6 +5,7 @@ use App\Http\Controllers\ShowAllCategoriesController;
 use App\Http\Controllers\ShowAllProductsController;
 use App\Http\Controllers\AddItemController;
 use App\Http\Controllers\ShowCartController;
+use App\Http\Controllers\ShowProductController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -24,7 +25,7 @@ Route::get('/categories', ShowAllCategoriesController::class)->name('categories'
 Route::get('/categories/{category}', ShowAllCategoriesController::class)->name('categories.show');
 
 Route::get('/products', ShowAllProductsController::class)->name('products');
-Route::get('/products/{product}', ShowAllProductsController::class)->name('products.show');
+Route::get('/products/{product}', ShowProductController::class)->name('products.show');
 
 Route::middleware([
     'auth:sanctum',

@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import { router } from '@inertiajs/vue3'
 import Section from '@/Components/Section.vue'
+import { Link } from '@inertiajs/vue3'
 
 const props = defineProps({
     products: Array,
@@ -76,7 +77,9 @@ const getCategoryColor = (categoryId) => {
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     <div v-for="product in filteredProducts" :key="product.id" 
                         class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                        <img :src="product.image_url" :alt="product.name" class="w-full h-48 object-cover">
+                        <Link :href="route('products.show', product.id)">
+                            <img :src="product.image_url" :alt="product.name" class="w-full h-48 object-cover">
+                        </Link>
                         
                         <div class="p-4">
                             <div class="flex items-center justify-between mb-2">
