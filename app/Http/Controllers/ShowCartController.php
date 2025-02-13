@@ -8,7 +8,7 @@ use App\Models\CartItem;
 use App\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 
-class CartController extends Controller
+class ShowCartController extends Controller
 {
     public function index()
     {

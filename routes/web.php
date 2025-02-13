@@ -3,8 +3,8 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShowAllCategoriesController;
 use App\Http\Controllers\ShowAllProductsController;
-use App\Http\Controllers\CartController;
 use App\Http\Controllers\AddItemController;
+use App\Http\Controllers\ShowCartController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -37,8 +37,8 @@ Route::middleware([
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-    Route::delete('/cart/{cartItem}', [CartController::class, 'removeItem'])->name('cart.remove');
-    Route::patch('/cart/{cartItem}', [CartController::class, 'updateQuantity'])->name('cart.update');
+    Route::get('/cart', [ShowCartController::class, 'index'])->name('cart.index');
+    Route::delete('/cart/{cartItem}', [ShowCartController::class, 'removeItem'])->name('cart.remove');
+    Route::patch('/cart/{cartItem}', [ShowCartController::class, 'updateQuantity'])->name('cart.update');
     Route::post('/cart/add/{product}', AddItemController::class)->name('cart.add');
 });
