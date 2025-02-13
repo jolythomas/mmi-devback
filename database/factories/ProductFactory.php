@@ -24,6 +24,7 @@ class ProductFactory extends Factory
             'discounted_price' => fake()->randomNumber(5, true),
             'stock' => fake()->randomNumber(3, true),
             'image_url' => 'https://picsum.photos/400/300',
+            'category_id' => Category::inRandomOrder()->first()->id,
         ];
     }
 

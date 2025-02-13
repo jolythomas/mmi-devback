@@ -9,7 +9,7 @@
                         <div class="space-y-4">
                             <div v-for="item in cartItems" :key="item.id" class="flex items-center justify-between border-b pb-4">
                                 <div class="flex items-center space-x-4">
-                                    <img :src="item.product.image" class="w-20 h-20 object-cover rounded" />
+                                    <img :src="item.product.image_url" class="w-20 h-20 object-cover rounded" />
                                     <div>
                                         <h3 class="font-semibold">{{ item.product.name }}</h3>
                                         <p class="text-gray-600">{{ item.price }}€</p>

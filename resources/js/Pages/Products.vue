@@ -33,6 +33,20 @@ const addToCart = (product) => {
         }
     })
 }
+
+const getCategoryColor = (categoryId) => {
+    const colors = {
+        1: 'bg-red-500',
+        2: 'bg-blue-500',
+        3: 'bg-green-500',
+        4: 'bg-purple-500',
+        5: 'bg-yellow-500',
+        6: 'bg-pink-500',
+        7: 'bg-indigo-500',
+        8: 'bg-orange-500',
+    }
+    return colors[categoryId] || 'bg-gray-500'
+}
 </script>
 
 <template>
@@ -65,7 +79,15 @@ const addToCart = (product) => {
                         <img :src="product.image_url" :alt="product.name" class="w-full h-48 object-cover">
                         
                         <div class="p-4">
-                            <h3 class="text-lg font-semibold text-gray-800">{{ product.name }}</h3>
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-lg font-semibold text-gray-800">{{ product.name }}</h3>
+                                <span 
+                                    v-if="product.category"
+                                    :class="[getCategoryColor(product.category.id), 'px-2 py-1 rounded-full text-white text-xs']"
+                                >
+                                    {{ product.category.name }}
+                                </span>
+                            </div>
                             <p class="text-gray-600 mt-2 text-sm line-clamp-2">{{ product.description }}</p>
                             
                             <div class="mt-4 flex items-center justify-between">

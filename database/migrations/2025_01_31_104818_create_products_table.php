@@ -19,6 +19,7 @@ return new class extends Migration
             $table->bigInteger('discounted_price')->nullable();
             $table->integer('stock')->default(0);
             $table->string('image_url')->nullable();
+            $table->foreignId('category_id')->constrained('categories');
             $table->timestamps();
         });
     }
