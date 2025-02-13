@@ -40,23 +40,37 @@ function handleImageError() {
     <div class="min-h-screen bg-gray-100">
 
         <!-- Hero Section -->
-        <div class="relative bg-white">
-            <div class="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
-                <div class="text-center">
-                    <h2 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
-                        Découvrez nos nouveautés
-                    </h2>
-                    <p class="mt-4 text-xl text-gray-500">
-                        Les meilleures offres pour vous
-                    </p>
-                </div>
+    <section class="bg-gray-50 header">
+        <div class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
+            <div class="mx-auto max-w-xl text-center">
+            <h1 class="text-3xl font-extrabold sm:text-5xl">
+                Découvrez nos produits et
+                <strong class="font-extrabold text-blue-700 sm:block"> nos meilleures offres. </strong>
+            </h1>
+
+            <p class="mt-4 sm:text-xl/relaxed">
+                Laissez vous tenter par notre gamme de produits de qualité. Naviguez parmis les différentes catégories et découvrez les meilleures offres.
+            </p>
+
+            <div class="mt-8 flex flex-wrap justify-center gap-4">
+                <a
+                class="block w-full rounded-sm bg-blue-600 px-12 py-3 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:ring-3 focus:outline-hidden sm:w-auto"
+                href="#"
+                >
+                Découvrir
+                </a>
+
+
+            
+            </div>
             </div>
         </div>
+    </section>
 
         <!-- Featured Products -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <h2 class="text-2xl font-bold text-gray-900 mb-8">Produits en vedette</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                 <!-- Product Card -->
                 <div v-for="product in products.slice(0, 4)" :key="product.id" class="bg-white rounded-lg shadow-md overflow-hidden">
                     <div class="aspect-w-3 aspect-h-4">
@@ -77,7 +91,7 @@ function handleImageError() {
         </div>
 
         <!-- Categories -->
-        <div class="bg-gray-50 py-12">
+        <div class="bg-gray-50 py-12" >
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-2xl font-bold text-gray-900 mb-8">Nos catégories</h2>
                 <div class="flex flex-wrap gap-4">
@@ -113,3 +127,10 @@ function handleImageError() {
     </div>
 
 </template>
+
+<style scoped>
+.header {
+  background: radial-gradient(circle at 70% 10%, rgba(0, 123, 255, 0.15) 0%, transparent 70%),
+              radial-gradient(circle at 80% 20%, rgba(0, 123, 255, 0.12) 0%, transparent 50%);
+}
+</style>
