@@ -4,6 +4,8 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use App\Models\Cart;
+use App\Models\CartItem;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -36,7 +38,17 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         return array_merge(parent::share($request), [
-            //
+            'auth' => [
+                'user' => $request->user(),
+            ],
+            'cartCount' => function () use ($request) {
+                if (auth()->check()) {
+                    $cart = Cart::where('user_id', auth()->id())->first();
+                    return $cart ? CartItem::where('cart_id', $cart->id)->sum('quantity') : 0;
+                }
+                return 0;
+            },
+            // ... autres données partagées
         ]);
     }
 }
