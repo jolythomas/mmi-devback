@@ -1,5 +1,4 @@
 <script setup>
-import AppLayout from '@/Layouts/AppLayout.vue';
 import DeleteUserForm from '@/Pages/Profile/Partials/DeleteUserForm.vue';
 import LogoutOtherBrowserSessionsForm from '@/Pages/Profile/Partials/LogoutOtherBrowserSessionsForm.vue';
 import SectionBorder from '@/Components/SectionBorder.vue';
@@ -14,8 +13,8 @@ defineProps({
 </script>
 
 <template>
-    <AppLayout title="Profile">
-        <template #header>
+    <Section title="Profile">
+        <template #header title="Profile">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Profile
             </h2>
@@ -53,5 +52,5 @@ defineProps({
                 </template>
             </div>
         </div>
-    </AppLayout>
+    </Section>
 </template>

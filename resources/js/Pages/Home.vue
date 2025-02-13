@@ -1,6 +1,5 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
-import AppLayout from '@/Layouts/AppLayout.vue';
 
 defineProps({
     canLogin: {
@@ -37,7 +36,6 @@ function handleImageError() {
 
 <template>
     <Head title="Boutique en ligne" />
-    <AppLayout>
     
     <div class="min-h-screen bg-gray-100">
 
@@ -158,6 +156,5 @@ function handleImageError() {
             </div>
         </footer>
     </div>
-      </AppLayout>
 
 </template>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -11,9 +12,11 @@ class ShowAllProductsController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request)
+    public function __invoke()
     {
-        $products = Product::all();
-        return Inertia::render('Products', ['products'=>$products]);
+        return Inertia::render('Products', [
+            'products' => Product::with('category')->get(),
+            'categories' => Category::all()
+        ]);
     }
 }

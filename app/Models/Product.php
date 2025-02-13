@@ -19,6 +19,8 @@ class Product extends Model
         'price',
         'discounted_price',
         'stock',
+        'image_url',
+        'category_id'
     ];
 
     protected function price(): Attribute
@@ -50,5 +52,10 @@ class Product extends Model
     public function coverImage()
     {
         return $this->hasOne(ProductImage::class)->where('is_cover', true);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }
