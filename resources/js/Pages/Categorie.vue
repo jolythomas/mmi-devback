@@ -5,6 +5,20 @@ import Section from '@/Components/Section.vue'
 defineProps({
     categories: Array
 })
+
+const getCategoryColor = (categoryId) => {
+    const colors = {
+        1: 'bg-red-500',
+        2: 'bg-blue-500',
+        3: 'bg-green-500',
+        4: 'bg-purple-500',
+        5: 'bg-yellow-500',
+        6: 'bg-pink-500',
+        7: 'bg-indigo-500',
+        8: 'bg-orange-500',
+    }
+    return colors[categoryId] || 'bg-gray-500'
+}
 </script>
 
 
@@ -15,28 +29,22 @@ defineProps({
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div v-for="category in categories" :key="category.id" 
                         class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                        <Link :href="route('categories.show', category.id)">
-                            <img 
-                                :src="category.image" 
-                                :alt="category.name" 
-                                class="w-full h-48 object-cover"
-                            >
-                            <div class="p-6">
+                        <Link :href="route('categories.show', category.id)" class="p-6 block hover:bg-gray-50">
+                            <div class="flex items-center justify-between">
                                 <h3 class="text-xl font-semibold text-gray-800">{{ category.name }}</h3>
-                                <p class="mt-2 text-gray-600">{{ category.description }}</p>
-                                
-                                <div class="mt-4 flex items-center text-sm text-gray-500">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-                                        <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z" />
+                                <span :class="[getCategoryColor(category.id), 'px-3 py-1 rounded-full text-white text-sm']">
+                                    {{ category.products_count || 0 }} produits
+                                </span>
+                            </div>
+                            <p class="mt-2 text-gray-600">{{ category.description }}</p>
+                            
+                            <div class="mt-4">
+                                <span class="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-700">
+                                    Voir les produits
+                                    <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                                     </svg>
-                                    {{ category.products_count }} produits
-                                </div>
-                                
-                                <div class="mt-4">
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-blue-100 text-blue-800">
-                                        Voir les produits
-                                    </span>
-                                </div>
+                                </span>
                             </div>
                         </Link>
                     </div>

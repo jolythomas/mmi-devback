@@ -13,7 +13,8 @@ class ShowAllCategoriesController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $categories = Category::all();
-        return Inertia::render('Categorie', ['categories'=>$categories]);
+        return Inertia::render('Categorie', [
+            'categories' => Category::withCount('products')->get()
+        ]);
     }
 }
