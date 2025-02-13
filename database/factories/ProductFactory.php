@@ -18,11 +18,12 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'name' => fake()->word(),
             'description' => fake()->text(),
             'price' => fake()->randomNumber(5, true),
             'discounted_price' => fake()->randomNumber(5, true),
             'stock' => fake()->randomNumber(3, true),
+            'image_url' => 'https://picsum.photos/400/300',
         ];
     }
 

@@ -1,20 +1,28 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShowAllCategoriesController;
+use App\Http\Controllers\ShowAllProductsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+// Route::get('/', function () {
+//     return Inertia::render('Welcome', [
+//         'canLogin' => Route::has('login'),
+//         'canRegister' => Route::has('register'),
+//         'laravelVersion' => Application::VERSION,
+//         'phpVersion' => PHP_VERSION,
+//     ]);
+// })->name('home');
+
+Route::get('/', HomeController::class)->name('home');
 
 Route::get('/categories', ShowAllCategoriesController::class)->name('categories');
+Route::get('/categories/{category}', ShowAllCategoriesController::class)->name('categories.show');
+
+Route::get('/products', ShowAllProductsController::class)->name('products');
+Route::get('/products/{product}', ShowAllProductsController::class)->name('products.show');
 
 Route::middleware([
     'auth:sanctum',
