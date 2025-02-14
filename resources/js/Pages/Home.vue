@@ -52,17 +52,14 @@ function handleImageError() {
                 Laissez vous tenter par notre gamme de produits de qualité. Naviguez parmis les différentes catégories et découvrez les meilleures offres.
             </p>
 
-            <div class="mt-8 flex flex-wrap justify-center gap-4">
-                <a
-                class="block w-full rounded-sm bg-blue-600 px-12 py-3 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:ring-3 focus:outline-hidden sm:w-auto"
-                href="#"
-                >
-                Découvrir
-                </a>
-
-
-            
-            </div>
+                <div class="mt-8 flex flex-wrap justify-center gap-4">
+                    <a
+                    class="block w-full rounded-lg bg-blue-600 px-12 py-3 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:ring-3 focus:outline-hidden sm:w-auto"
+                    href="#"
+                    >
+                    Découvrir
+                    </a>
+                </div>
             </div>
         </div>
     </section>

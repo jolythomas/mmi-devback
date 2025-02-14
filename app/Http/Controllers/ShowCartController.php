@@ -35,7 +35,7 @@ class ShowCartController extends Controller
     public function updateQuantity(Request $request, CartItem $cartItem)
     {
         $request->validate([
-            'quantity' => ['required', 'integer', 'min:1', 'max:'.$cartItem->product->stock]
+            'quantity' => 'required|integer|min:1|max:'.$cartItem->product->stock
         ]);
 
         $cartItem->update([

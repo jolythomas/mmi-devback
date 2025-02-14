@@ -28,12 +28,6 @@ const addToCart = () => {
                         <!-- Image du produit -->
                         <div class="relative">
                             <img :src="product.image_url" :alt="product.name" class="w-full h-96 object-cover rounded-lg">
-                            <span 
-                                v-if="product.category"
-                                :class="[`bg-${product.category.color}-500`, 'absolute top-4 right-4 px-3 py-1 rounded-full text-white text-sm']"
-                            >
-                                {{ product.category.name }}
-                            </span>
                         </div>
 
                         <!-- Informations du produit -->
