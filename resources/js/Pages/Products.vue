@@ -83,7 +83,7 @@ const getCategoryColor = (categoryId) => {
                         
                         <div class="p-4">
                             <div class="flex items-center justify-between mb-2">
-                                <h3 class="text-lg font-semibold text-gray-800">{{ product.name }}</h3>
+                                <h3 class="text-lg font-semibold text-gray-800 capitalize">{{ product.name }}</h3>
                                 <span 
                                     v-if="product.category"
                                     :class="[getCategoryColor(product.category.id), 'px-2 py-1 rounded-full text-white text-xs']"

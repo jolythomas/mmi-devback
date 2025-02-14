@@ -58,7 +58,7 @@ const getCategoryColor = (categoryId) => {
                         
                         <div class="p-4">
                             <div class="flex items-center justify-between mb-2">
-                                <h3 class="text-lg font-semibold text-gray-800 capitalize">{{ product.name }}</h3>
+                                <h3 class="text-lg font-semibold text-gray-800">{{ product.name }}</h3>
                             </div>
                             <p class="text-gray-600 mt-2 text-sm line-clamp-2">{{ product.description }}</p>
                             
