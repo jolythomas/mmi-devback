@@ -11,7 +11,7 @@ class ShowCategoryController extends Controller
     {
         $category->load('products');
 
-        return Inertia::render('Categories/Show', [
+        return Inertia::render('Category/Show', [
             'category' => $category,
             'products' => $category->products()->with('category')->get()
         ]);

@@ -18,21 +18,16 @@ class AddItemController extends Controller
                 'quantity' => 'required|integer|min:1|max:'.$product->stock
             ]);
 
-            $cart = Cart::firstOrCreate([
-                'user_id' => Auth::id()
-            ]);
+            $cart = $request->user()->cart()->firstOrCreate();
             
-            $cartItem = CartItem::where('cart_id', $cart->id)
-                              ->where('product_id', $product->id)
-                              ->first();
+            $cartItem = $cart->items()->where('product_id', $product->id)->first();
             
             if ($cartItem) {
                 $cartItem->update([
                     'quantity' => $cartItem->quantity + $request->quantity
                 ]);
             } else {
-                CartItem::create([
-                    'cart_id' => $cart->id,
+               $cart->items()->create([
                     'product_id' => $product->id,
                     'quantity' => $request->quantity,
                     'price' => $product->price

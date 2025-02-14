@@ -10,15 +10,13 @@ use Illuminate\Support\Facades\Auth;
 
 class ShowCartController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $cart = Cart::where('user_id', Auth::id())->first();
+        $cart = $request->user()->cart()->first();
         $cartItems = [];
 
         if ($cart) {
-            $cartItems = CartItem::where('cart_id', $cart->id)
-                ->with('product')
-                ->get();
+            $cartItems = $cart->items()->with('product')->get();
         }
 
         return Inertia::render('Cart/Index', [
