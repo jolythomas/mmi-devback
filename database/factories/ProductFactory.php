@@ -32,7 +32,7 @@ class ProductFactory extends Factory
     {
         return $this->afterCreating(function ($product) {
             $product->categories()->attach(
-                Category::inRandomOrder()->limit(rand(1, 3))->pluck('id')
+                Category::inRandomOrder()->limit(rand(1, 1))->pluck('id')
             );
         });
     }
