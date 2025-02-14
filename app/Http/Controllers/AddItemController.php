@@ -21,12 +21,10 @@ class AddItemController extends Controller
                 'quantity' => ['required', 'integer', 'min:1', 'max:'.$product->stock]
             ]);
 
-            // Créer ou récupérer le panier de l'utilisateur
             $cart = Cart::firstOrCreate([
                 'user_id' => Auth::id()
             ]);
             
-            // Vérifier si le produit existe déjà dans le panier
             $cartItem = CartItem::where('cart_id', $cart->id)
                               ->where('product_id', $product->id)
                               ->first();

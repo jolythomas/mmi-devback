@@ -17,18 +17,11 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class User extends Authenticatable implements FilamentUser
 {
     use HasApiTokens;
-
-    /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
         'email',
@@ -36,11 +29,6 @@ class User extends Authenticatable implements FilamentUser
         'role',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
@@ -48,20 +36,10 @@ class User extends Authenticatable implements FilamentUser
         'two_factor_secret',
     ];
 
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array<int, string>
-     */
     protected $appends = [
         'profile_photo_url',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
@@ -73,7 +51,6 @@ class User extends Authenticatable implements FilamentUser
         return $this->isAdmin() && $this->hasVerifiedEmail();
     }
 
-    // Méthodes helpers pour vérifier le rôle
     public function isAdmin(): bool
     {
         return $this->role === UserRole::ADMIN;
