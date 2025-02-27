@@ -9,9 +9,6 @@ use Inertia\Inertia;
 
 class ShowAllProductsController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
     public function __invoke()
     {
         return Inertia::render('Products', [
