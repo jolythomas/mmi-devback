@@ -29,10 +29,15 @@
                                 <span class="px-2 py-1 text-sm rounded-full" :class="{
                                     'bg-yellow-100 text-yellow-800': order.status === 'pending',
                                     'bg-blue-100 text-blue-800': order.status === 'processing',
-                                    'bg-green-100 text-green-800': order.status === 'completed',
+                                    'bg-indigo-100 text-indigo-800': order.status === 'shipped',
+                                    'bg-green-100 text-green-800': order.status === 'delivered',
                                     'bg-red-100 text-red-800': order.status === 'cancelled'
                                 }">
-                                    {{ order.status }}
+                                    {{ order.status === 'pending' ? 'En attente' :
+                                       order.status === 'processing' ? 'En cours de traitement' :
+                                       order.status === 'shipped' ? 'Expédiée' :
+                                       order.status === 'delivered' ? 'Livrée' :
+                                       order.status === 'cancelled' ? 'Annulée' : order.status }}
                                 </span>
                             </div>
                         </div>
