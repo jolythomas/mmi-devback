@@ -12,7 +12,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Détails de la commande -->
                 <div>
                     <h2 class="text-xl font-semibold mb-4">Détails de la commande</h2>
                     <div class="space-y-2">
@@ -26,7 +25,6 @@
                     </div>
                 </div>
 
-                <!-- Adresse de livraison -->
                 <div>
                     <h2 class="text-xl font-semibold mb-4">Adresse de livraison</h2>
                     <div class="space-y-1">
@@ -37,7 +35,6 @@
                 </div>
             </div>
 
-            <!-- Liste des produits -->
             <div class="mt-8">
                 <h2 class="text-xl font-semibold mb-4">Articles commandés</h2>
                 <div class="overflow-x-auto">
@@ -77,14 +74,12 @@
                 </div>
             </div>
 
-            <!-- Total -->
             <div class="mt-8 flex justify-end">
                 <div class="text-right">
                     <p class="text-lg font-semibold">Total de la commande : {{ order.total_amount }}€</p>
                 </div>
             </div>
 
-            <!-- Bouton retour -->
             <div class="mt-8 text-center">
                 <Link
                     :href="route('products')"

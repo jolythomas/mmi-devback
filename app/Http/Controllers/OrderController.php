@@ -117,13 +117,11 @@ class OrderController extends Controller
             ]);
         }
 
-        // Supprimer le panier après la commande
         if ($cart) {
             $cart->items()->delete();
             $cart->delete();
         }
 
-        // Stocker l'ID de la commande dans la session pour la page de confirmation
         session()->flash('order_id', $order->id);
 
         return redirect()->route('order.confirmation');

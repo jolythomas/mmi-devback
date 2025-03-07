@@ -55,7 +55,6 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/cart/{cartItem}', [ShowCartController::class, 'updateQuantity'])->name('cart.update');
     Route::post('/cart/add/{product}', AddItemController::class)->name('cart.add');
 
-    // Routes pour les commandes
     Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
     Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
     Route::get('/order-confirmation', [OrderController::class, 'confirmation'])->name('order.confirmation');

@@ -37,7 +37,7 @@ const logout = () => {
                             <!-- Logo -->
                             <div class="shrink-0 flex items-center">
                                 <Link :href="route('home')">
-                                    <ApplicationMark class="block h-9 w-auto" />
+                                    <h2 class="text-2xl font-bold">ecommerce</h2>
                                 </Link>
                             </div>
 

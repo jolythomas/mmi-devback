@@ -39,7 +39,6 @@ function handleImageError() {
     
     <div class="min-h-screen bg-gray-100">
 
-        <!-- Hero Section -->
     <section class="bg-gray-50 header">
         <div class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
             <div class="mx-auto max-w-xl text-center">
@@ -53,12 +52,12 @@ function handleImageError() {
             </p>
 
                 <div class="mt-8 flex flex-wrap justify-center gap-4">
-                    <a
+                    <Link
                     class="block w-full rounded-lg bg-blue-600 px-12 py-3 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:ring-3 focus:outline-hidden sm:w-auto"
-                    href="#"
+                    :href="route('products')"
                     >
                     Découvrir
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>
@@ -68,13 +67,14 @@ function handleImageError() {
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-2xl font-bold text-gray-900 mb-8">Nos catégories</h2>
                 <div class="flex flex-wrap gap-4">
-                    <div 
+                    <Link 
                         v-for="category in categories" 
                         :key="category.id" 
-                        class="px-4 py-2 bg-white rounded-full shadow-sm border border-gray-200 hover:bg-blue-50 hover:border-blue-200 transition-colors cursor-pointer"
+                        :href="route('categories.show', category.id)"
+                        class="px-4 py-2 bg-white rounded-full shadow-sm border border-gray-200 hover:bg-blue-50 hover:border-blue-200 transition-colors"
                     >
                         <span class="text-gray-700 font-medium">{{ category.name }}</span>
-                    </div>
+                    </Link>
                 </div>
             </div>
         </div>

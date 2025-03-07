@@ -51,17 +51,12 @@ class AddressController extends Controller
             ->with('message', 'Adresse créée avec succès');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(Request $request, Address $address)
     {
         if ($address->user_id !== $request->user()->id) {
@@ -73,9 +68,6 @@ class AddressController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Address $address)
     {
         if ($address->user_id !== $request->user()->id) {
@@ -102,9 +94,6 @@ class AddressController extends Controller
             ->with('message', 'Adresse mise à jour avec succès');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Request $request, Address $address)
     {
         if ($address->user_id !== $request->user()->id) {

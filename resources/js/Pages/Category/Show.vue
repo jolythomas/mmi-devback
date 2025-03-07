@@ -38,7 +38,6 @@ const getCategoryColor = (categoryId) => {
     <Section :title="category.name">
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <!-- Description de la catégorie -->
                 <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
                     <p class="text-gray-600">{{ category.description }}</p>
                     <div class="mt-4">
@@ -48,7 +47,6 @@ const getCategoryColor = (categoryId) => {
                     </div>
                 </div>
 
-                <!-- Grille de produits -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     <div v-for="product in products" :key="product.id" 
                         class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
@@ -79,7 +77,6 @@ const getCategoryColor = (categoryId) => {
                     </div>
                 </div>
 
-                <!-- Lien retour -->
                 <div class="mt-8 text-center">
                     <Link 
                         :href="route('categories')" 

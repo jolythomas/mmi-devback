@@ -54,7 +54,6 @@ const getCategoryColor = (categoryId) => {
     <Section title="Nos Produits">
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <!-- Filtres -->
                 <div class="mb-8 flex flex-wrap gap-4">
                     <input 
                         type="text" 
@@ -73,7 +72,6 @@ const getCategoryColor = (categoryId) => {
                     </select>
                 </div>
 
-                <!-- Grille de produits -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                     <div v-for="product in filteredProducts" :key="product.id" 
                         class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
