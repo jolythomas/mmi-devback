@@ -11,10 +11,10 @@ class AddressController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         return Inertia::render('Addresses/Index', [
-            'addresses' => auth()->user()->addresses()->latest()->get()
+            'addresses' => $request->user()->addresses()->latest()->get()
         ]);
     }
 
@@ -39,10 +39,10 @@ class AddressController extends Controller
             'is_default' => 'boolean',
         ]);
 
-        $address = auth()->user()->addresses()->create($validated);
+        $address = $request->user()->addresses()->create($validated);
 
         if ($validated['is_default'] ?? false) {
-            auth()->user()->addresses()
+            $request->user()->addresses()
                 ->where('id', '!=', $address->id)
                 ->update(['is_default' => false]);
         }
@@ -62,9 +62,9 @@ class AddressController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Address $address)
+    public function edit(Request $request, Address $address)
     {
-        if ($address->user_id !== auth()->id()) {
+        if ($address->user_id !== auth()->request->user()->id) {
             abort(403);
         }
 
@@ -78,7 +78,7 @@ class AddressController extends Controller
      */
     public function update(Request $request, Address $address)
     {
-        if ($address->user_id !== auth()->id()) {
+        if ($address->user_id !== $request->user()->id) {
             abort(403);
         }
 
@@ -93,7 +93,7 @@ class AddressController extends Controller
         $address->update($validated);
 
         if ($validated['is_default'] ?? false) {
-            auth()->user()->addresses()
+            $request->user()->addresses()
                 ->where('id', '!=', $address->id)
                 ->update(['is_default' => false]);
         }
@@ -105,9 +105,9 @@ class AddressController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Address $address)
+    public function destroy(Request $request, Address $address)
     {
-        if ($address->user_id !== auth()->id()) {
+        if ($address->user_id !== $request->user()->id) {
             abort(403);
         }
 
