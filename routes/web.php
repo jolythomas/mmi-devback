@@ -12,6 +12,7 @@ use App\Http\Controllers\AddressController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Laravel\Jetstream\Http\Controllers\Inertia\UserProfileController;
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
@@ -39,9 +40,9 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profile', [UserProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [UserProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [UserProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('addresses', AddressController::class);
 });
