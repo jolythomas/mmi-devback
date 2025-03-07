@@ -1,28 +1,3 @@
-<script setup>
-import { useForm } from '@inertiajs/vue3';
-import { Head } from '@inertiajs/vue3';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import AppLayout from '@/Layouts/AppLayout.vue';
-
-const props = defineProps({
-    address: Object,
-});
-
-const form = useForm({
-    street: props.address.street,
-    city: props.address.city,
-    postal_code: props.address.postal_code,
-    country: props.address.country,
-});
-
-const submit = () => {
-    form.put(route('addresses.update', props.address.id));
-};
-</script>
-
 <template>
     <AppLayout title="Modifier une adresse">
         <template #header>
@@ -96,3 +71,26 @@ const submit = () => {
         </div>
     </AppLayout>
 </template> 
+
+<script setup>
+import { useForm } from '@inertiajs/vue3';
+import InputError from '@/Components/InputError.vue';
+import InputLabel from '@/Components/InputLabel.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import TextInput from '@/Components/TextInput.vue';
+
+const props = defineProps({
+    address: Object,
+});
+
+const form = useForm({
+    street: props.address.street,
+    city: props.address.city,
+    postal_code: props.address.postal_code,
+    country: props.address.country,
+});
+
+const submit = () => {
+    form.put(route('addresses.update', props.address.id));
+};
+</script>
