@@ -5,7 +5,6 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import Checkbox from '@/Components/Checkbox.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 
 const props = defineProps({
@@ -17,7 +16,6 @@ const form = useForm({
     city: props.address.city,
     postal_code: props.address.postal_code,
     country: props.address.country,
-    is_default: props.address.is_default,
 });
 
 const submit = () => {
@@ -84,14 +82,6 @@ const submit = () => {
                                     required
                                 />
                                 <InputError :message="form.errors.country" class="mt-2" />
-                            </div>
-
-                            <div class="flex items-center">
-                                <Checkbox
-                                    id="is_default"
-                                    v-model:checked="form.is_default"
-                                />
-                                <InputLabel for="is_default" value="Définir comme adresse par défaut" class="ms-2" />
                             </div>
                         </div>
 

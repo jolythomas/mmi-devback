@@ -64,7 +64,7 @@ class AddressController extends Controller
      */
     public function edit(Request $request, Address $address)
     {
-        if ($address->user_id !== auth()->request->user()->id) {
+        if ($address->user_id !== $request->user()->id) {
             abort(403);
         }
 

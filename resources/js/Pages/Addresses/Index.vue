@@ -1,5 +1,3 @@
-
-
 <template>
     <AppLayout title="Mes Adresses">
         <template #header>
@@ -25,23 +23,16 @@
                 <div v-else class="space-y-6">
                     <div v-for="address in addresses" :key="address.id" class="bg-white shadow overflow-hidden sm:rounded-lg">
                         <div class="px-4 py-5 sm:px-6">
-                            <div class="flex justify-between items-center">
-                                <div>
-                                    <h3 class="text-lg leading-6 font-medium text-gray-900">
-                                        {{ address.street }}
-                                    </h3>
-                                    <p class="mt-1 max-w-2xl text-sm text-gray-500">
-                                        {{ address.city }}, {{ address.postal_code }}
-                                    </p>
-                                    <p class="mt-1 max-w-2xl text-sm text-gray-500">
-                                        {{ address.country }}
-                                    </p>
-                                </div>
-                                <div>
-                                    <span v-if="address.is_default" class="px-2 py-1 text-sm rounded-full bg-green-100 text-green-800">
-                                        Par défaut
-                                    </span>
-                                </div>
+                            <div>
+                                <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                    {{ address.street }}
+                                </h3>
+                                <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                                    {{ address.city }}, {{ address.postal_code }}
+                                </p>
+                                <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                                    {{ address.country }}
+                                </p>
                             </div>
                         </div>
                         <div class="border-t border-gray-200 px-4 py-5 sm:px-6">
@@ -67,7 +58,8 @@
             </div>
         </div>
     </AppLayout>
-</template> 
+</template>
+
 <script setup>
 import { Link } from '@inertiajs/vue3';
 
