@@ -57,14 +57,20 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $rules = [
             'use_existing_address' => 'required|boolean',
-            'address_id' => 'required_if:use_existing_address,true|exists:addresses,id',
-            'address' => 'required_if:use_existing_address,false|string',
-            'city' => 'required_if:use_existing_address,false|string',
-            'postal_code' => 'required_if:use_existing_address,false|string',
-            'country' => 'required_if:use_existing_address,false|string',
-        ]);
+        ];
+
+        if ($request->use_existing_address) {
+            $rules['address_id'] = 'required|exists:addresses,id';
+        } else {
+            $rules['address'] = 'required|string';
+            $rules['city'] = 'required|string';
+            $rules['postal_code'] = 'required|string';
+            $rules['country'] = 'required|string';
+        }
+
+        $request->validate($rules);
 
         $cart = request()->user()->cart()->first();
         $cartItems = [];
@@ -117,15 +123,24 @@ class OrderController extends Controller
             $cart->delete();
         }
 
-        return Inertia::render('OrderConfirmation', [
-            'order' => $order->load('items.product')
-        ]);
+        // Stocker l'ID de la commande dans la session pour la page de confirmation
+        session()->flash('order_id', $order->id);
+
+        return redirect()->route('order.confirmation');
     }
 
-    public function show(Order $order)
+    public function confirmation()
     {
+        $orderId = session('order_id');
+        if (!$orderId) {
+            return redirect()->route('products');
+        }
+
+        $order = Order::with('items.product')->findOrFail($orderId);
+        session()->forget('order_id');
+
         return Inertia::render('OrderConfirmation', [
-            'order' => $order->load('items.product')
+            'order' => $order
         ]);
     }
 }

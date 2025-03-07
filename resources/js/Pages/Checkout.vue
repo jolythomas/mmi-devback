@@ -135,7 +135,7 @@ const handleAddressChange = () => {
         form.city = '';
         form.postal_code = '';
         form.country = '';
-        form.address_id = '';
+        form.address_id = null;
     }
 };
 

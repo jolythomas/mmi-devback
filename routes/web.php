@@ -46,6 +46,7 @@ Route::middleware([
     Route::delete('/profile', [UserProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('addresses', AddressController::class);
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -56,7 +57,6 @@ Route::middleware(['auth'])->group(function () {
 
     // Routes pour les commandes
     Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
-    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
-    Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+    Route::get('/order-confirmation', [OrderController::class, 'confirmation'])->name('order.confirmation');
 });
