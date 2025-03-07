@@ -155,14 +155,22 @@ const logout = () => {
                                             <div
                                                 class="block px-4 py-2 text-xs text-gray-400"
                                             >
-                                                Gérer le compte
+                                                {{ $page.props.auth.user.name }}
                                             </div>
 
-                                            <DropdownLink
-                                                :href="route('profile.show')"
+                                            <Link
+                                                :href="route('addresses.index')"
+                                                class="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
                                             >
-                                                Profil
-                                            </DropdownLink>
+                                                Mes Adresses
+                                            </Link>
+
+                                            <Link
+                                                :href="route('profile.show')"
+                                                class="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+                                            >
+                                                Profile
+                                            </Link>
 
                                             <div
                                                 class="border-t border-gray-200"
