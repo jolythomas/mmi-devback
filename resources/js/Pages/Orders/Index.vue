@@ -6,7 +6,7 @@
             <div v-if="orders.length === 0" class="text-center py-12">
                 <p class="text-gray-500">Vous n'avez pas encore de commandes.</p>
                 <Link
-                    :href="route('products.index')"
+                    :href="route('products')"
                     class="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                     Voir les produits
