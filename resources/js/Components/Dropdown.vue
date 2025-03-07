@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, onUnmounted, ref } from 'vue';
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 
 const props = defineProps({
     align: {
@@ -16,7 +16,7 @@ const props = defineProps({
     },
 });
 
-let open = ref(false);
+const open = ref(false);
 
 const closeOnEscape = (e) => {
     if (open.value && e.key === 'Escape') {
@@ -24,8 +24,19 @@ const closeOnEscape = (e) => {
     }
 };
 
-onMounted(() => document.addEventListener('keydown', closeOnEscape));
-onUnmounted(() => document.removeEventListener('keydown', closeOnEscape));
+const closeDropdown = () => {
+    open.value = false;
+};
+
+onMounted(() => {
+    document.addEventListener('keydown', closeOnEscape);
+    document.addEventListener('click', closeDropdown);
+});
+
+onUnmounted(() => {
+    document.removeEventListener('keydown', closeOnEscape);
+    document.removeEventListener('click', closeDropdown);
+});
 
 const widthClass = computed(() => {
     return {
@@ -44,16 +55,21 @@ const alignmentClasses = computed(() => {
 
     return 'origin-top';
 });
+
+const toggleDropdown = (e) => {
+    e.stopPropagation();
+    open.value = !open.value;
+};
 </script>
 
 <template>
     <div class="relative">
-        <div @click="open = ! open">
+        <div @click="toggleDropdown">
             <slot name="trigger" />
         </div>
 
         <!-- Full Screen Dropdown Overlay -->
-        <div v-show="open" class="fixed inset-0 z-40" @click="open = false" />
+        <div v-show="open" class="fixed inset-0 z-40" @click="closeDropdown" />
 
         <transition
             enter-active-class="transition ease-out duration-200"
@@ -67,8 +83,7 @@ const alignmentClasses = computed(() => {
                 v-show="open"
                 class="absolute z-50 mt-2 rounded-md shadow-lg"
                 :class="[widthClass, alignmentClasses]"
-                style="display: none;"
-                @click="open = false"
+                @click.stop
             >
                 <div class="rounded-md ring-1 ring-black ring-opacity-5" :class="contentClasses">
                     <slot name="content" />
