@@ -1,12 +1,4 @@
-<script setup>
-import { Link } from '@inertiajs/vue3';
-import { Head } from '@inertiajs/vue3';
-import AppLayout from '@/Layouts/AppLayout.vue';
 
-defineProps({
-    addresses: Array,
-});
-</script>
 
 <template>
     <AppLayout title="Mes Adresses">
@@ -16,39 +8,47 @@ defineProps({
             </h2>
         </template>
 
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-lg font-medium text-gray-900">Liste de mes adresses</h3>
-                        <Link
-                            :href="route('addresses.create')"
-                            class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700"
-                        >
-                            Ajouter une adresse
-                        </Link>
-                    </div>
+        <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+            <div class="px-4 py-6 sm:px-0">
+                <h1 class="text-2xl font-bold text-gray-900 mb-6">Mes Adresses</h1>
 
-                    <div v-if="addresses.length === 0" class="text-center py-8">
-                        <p class="text-gray-500">Vous n'avez pas encore d'adresses enregistrées.</p>
-                    </div>
+                <div v-if="addresses.length === 0" class="text-center py-12">
+                    <p class="text-gray-500">Vous n'avez pas encore d'adresses enregistrées.</p>
+                    <Link
+                        :href="route('addresses.create')"
+                        class="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    >
+                        Ajouter une adresse
+                    </Link>
+                </div>
 
-                    <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <div v-for="address in addresses" :key="address.id" class="border rounded-lg p-4">
-                            <div class="flex justify-between items-start mb-2">
+                <div v-else class="space-y-6">
+                    <div v-for="address in addresses" :key="address.id" class="bg-white shadow overflow-hidden sm:rounded-lg">
+                        <div class="px-4 py-5 sm:px-6">
+                            <div class="flex justify-between items-center">
                                 <div>
-                                    <h4 class="font-medium text-gray-900">{{ address.street }}</h4>
-                                    <p class="text-sm text-gray-500">{{ address.city }}, {{ address.postal_code }}</p>
-                                    <p class="text-sm text-gray-500">{{ address.country }}</p>
+                                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+                                        {{ address.street }}
+                                    </h3>
+                                    <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                                        {{ address.city }}, {{ address.postal_code }}
+                                    </p>
+                                    <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                                        {{ address.country }}
+                                    </p>
                                 </div>
-                                <span v-if="address.is_default" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                    Par défaut
-                                </span>
+                                <div>
+                                    <span v-if="address.is_default" class="px-2 py-1 text-sm rounded-full bg-green-100 text-green-800">
+                                        Par défaut
+                                    </span>
+                                </div>
                             </div>
-                            <div class="flex justify-end space-x-2 mt-4">
+                        </div>
+                        <div class="border-t border-gray-200 px-4 py-5 sm:px-6">
+                            <div class="flex justify-end space-x-3">
                                 <Link
                                     :href="route('addresses.edit', address.id)"
-                                    class="text-sm text-indigo-600 hover:text-indigo-900"
+                                    class="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                 >
                                     Modifier
                                 </Link>
@@ -56,7 +56,7 @@ defineProps({
                                     :href="route('addresses.destroy', address.id)"
                                     method="delete"
                                     as="button"
-                                    class="text-sm text-red-600 hover:text-red-900"
+                                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
                                 >
                                     Supprimer
                                 </Link>
@@ -68,3 +68,13 @@ defineProps({
         </div>
     </AppLayout>
 </template> 
+<script setup>
+import { Link } from '@inertiajs/vue3';
+
+defineProps({
+    addresses: {
+        type: Array,
+        required: true
+    }
+});
+</script> 
