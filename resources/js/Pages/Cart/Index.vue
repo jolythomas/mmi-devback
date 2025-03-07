@@ -36,9 +36,12 @@
                             <p class="text-xl font-bold">
                                 Total: {{ calculateTotal }}€
                             </p>
-                            <button class="mt-4 bg-blue-600 text-white px-6 py-2 rounded">
+                            <Link 
+                                :href="route('checkout')" 
+                                class="mt-4 inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700"
+                            >
                                 Commander
-                            </button>
+                            </Link>
                         </div>
                     </div>
                     

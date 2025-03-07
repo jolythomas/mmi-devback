@@ -9,6 +9,7 @@ use App\Http\Controllers\ShowProductController;
 use App\Http\Controllers\ShowCategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AddressController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -52,4 +53,10 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/cart/{cartItem}', [ShowCartController::class, 'removeItem'])->name('cart.remove');
     Route::patch('/cart/{cartItem}', [ShowCartController::class, 'updateQuantity'])->name('cart.update');
     Route::post('/cart/add/{product}', AddItemController::class)->name('cart.add');
+
+    // Routes pour les commandes
+    Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+    Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
 });
